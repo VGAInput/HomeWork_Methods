@@ -1,13 +1,13 @@
 import java.time.LocalDate;
 
 public class Main {
+    static int currentYear = LocalDate.now().getYear();
 
     public static void main(String[] args) {
 
-        final int currentYear = LocalDate.now().getYear();
+        getDeliveryDays(25);
 
     }
-
     private static void checkLeapYear(int setYear) {
         /*
             Реализуйте метод, который получает в качестве параметра год,
@@ -15,10 +15,21 @@ public class Main {
         и выводит результат в консоль.
         */
 
+        boolean isLeapYear = false;
         if (setYear % 4 == 0) {
-            System.out.println(setYear + " год является високосным.");
+            if (setYear % 100 == 0) {
+                if (setYear % 400 == 0)
+                    isLeapYear = true;
+                else
+                    isLeapYear = false;
+            } else
+                isLeapYear = true;
+        } else
+            isLeapYear = false;
+        if (isLeapYear) {
+            System.out.println(setYear + " — високосный год.");
         } else {
-            System.out.println(setYear + " год не является високосным.");
+            System.out.println(setYear + " — не високосный год.");
         }
 
     }
@@ -34,13 +45,13 @@ public class Main {
 
         switch (clientOS) {
             case 0:
-                if (clientDeviceYear < 2015)
+                if (clientDeviceYear < currentYear)
                     System.out.println("Установите облегченную версию приложения для iOS по ссылке");
                 else System.out.println("Установите версию приложения для iOS по ссылке");
 
                 break;
             case 1:
-                if (clientDeviceYear < 2015)
+                if (clientDeviceYear < currentYear)
                     System.out.println("Установите облегченную версию приложения для Android по ссылке");
                 else System.out.println("Установите версию приложения для Android по ссылке");
                 break;
@@ -56,13 +67,11 @@ public class Main {
             на вход принимает дистанцию и возвращает итоговое количество дней доставки.
         */
 
-        short etaDays = 1;
+        int etaDays = 1;
 
-        if (deliveryDistance > 20)
+        for (int i = 20; i < deliveryDistance; i += 40) {
             etaDays++;
-        if (deliveryDistance >= 60)
-            etaDays++;
-        if (deliveryDistance >= 100) etaDays++;
+        }
 
         System.out.println("Потребуется дней: " + etaDays);
 
