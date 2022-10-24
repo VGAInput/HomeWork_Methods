@@ -5,32 +5,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        getDeliveryDays(25);
+        checkLeapYear(currentYear);{
+
+        }
 
     }
     private static void checkLeapYear(int setYear) {
         /*
-            Реализуйте метод, который получает в качестве параметра год,
-        а затем проверяет, является ли он високосным,
-        и выводит результат в консоль.
+            Реализуйте метод, который проверяет високосный ли год (в параметре), или нет.
         */
 
-        boolean isLeapYear = false;
-        if (setYear % 4 == 0) {
-            if (setYear % 100 == 0) {
-                if (setYear % 400 == 0)
-                    isLeapYear = true;
-                else
-                    isLeapYear = false;
-            } else
-                isLeapYear = true;
-        } else
-            isLeapYear = false;
-        if (isLeapYear) {
+        if (((setYear % 4 == 0) && (setYear % 100!= 0)) || (setYear%400 == 0))
             System.out.println(setYear + " — високосный год.");
-        } else {
+        else
             System.out.println(setYear + " — не високосный год.");
-        }
 
     }
 
